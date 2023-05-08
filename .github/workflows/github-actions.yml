@@ -11,3 +11,15 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
+
+  execute-integration-tests:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install ruff pytest
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Run integration tests for {{ github.repository }}
+        run: |
+          if [ -d tests ]; then pytest tests; else echo "There is no tests directory"; fi
