@@ -11,6 +11,12 @@ jobs:
       - name: List files in the repository
         run: ls ${{ github.workspace }}
 
+  run-fast-api-application:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Up application on port 8000
+        run: python application.py
+
   execute-integration-tests:
     runs-on: ubuntu-20.04
     steps:
