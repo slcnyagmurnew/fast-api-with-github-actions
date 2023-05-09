@@ -1,7 +1,7 @@
 import sys
 
-sys.path.append("../../")
-from main import say_hello
+sys.path.insert(0, "../../application.py")
+from application import say_hello
 
 
 def test_say_hello():
