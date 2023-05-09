@@ -1,19 +1,20 @@
 from fastapi import FastAPI
-import uvicorn
-
-app = FastAPI()
+import logging
 
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
+class Application:
 
+    def __init__(self):
+        self.api = FastAPI()
+        self.api.on_event("shutdown")
+        self.api.get("/")(self.root)
+        self.api.get("/hello/{name}")(self.say_hello)
 
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
+    async def root(self):
+        return {"message": "Hello World"}
 
+    async def say_hello(self, name: str):
+        return {"message": f"Hello {name}"}
 
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
-
+    async def close(self):
+        logging.warning("Shutting down the app.")
