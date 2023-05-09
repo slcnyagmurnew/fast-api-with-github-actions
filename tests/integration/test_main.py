@@ -1,12 +1,12 @@
-import sys,os
-from pathlib import Path
-path = Path(os.getcwd())
-sys.path.append(str(path.parent.parent))  # parent of parent for main directory
-
 from application import say_hello
+import unittest
 
 
 def test_say_hello():
     name = "Ahmet"
     real_value = say_hello(name=name)
     assert real_value == {"message": f"Hello {name}"}
+
+
+if __name__ == "__main__":
+    unittest.main()
