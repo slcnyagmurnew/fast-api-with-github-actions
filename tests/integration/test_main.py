@@ -1,7 +1,7 @@
 import sys,os
 from pathlib import Path
 path = Path(os.getcwd())
-sys.path.append(str(path.parent))
+sys.path.append(str(path.parent.parent))  # parent of parent for main directory
 
 from application import say_hello
 
