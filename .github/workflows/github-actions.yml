@@ -9,7 +9,7 @@ jobs:
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: List files in the repository
-        run: ls -la
+        run: ls ${{ github.workspace }}
 
   execute-integration-tests:
     runs-on: ubuntu-20.04
@@ -30,4 +30,4 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run integration tests for ${{ github.repository }}
         run: |
-          pytest tests
+          python -m unittest discover -s tests/integration
