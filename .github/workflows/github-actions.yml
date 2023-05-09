@@ -29,8 +29,8 @@ jobs:
           pip install ruff pytest
       - run: pip install -r requirements.txt
 
-      - name: Up application on port 8000
-        run: python application.py
+#      - name: Up application on port 8000
+#        run: python application.py
 
       - name: Run integration tests for ${{ github.repository }}
         run: |
